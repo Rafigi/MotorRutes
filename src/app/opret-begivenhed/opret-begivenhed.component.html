@@ -1,21 +1,22 @@
 <form>
   <fieldset>
-    <legend>Begivenhed</legend>
-    <div class="form-group">
-      <label>Titel</label>
-      <input type="text" class="form-control" placeholder="Skriv titel">
-    </div>
-    <div class="form-group">
+    <h4 class="col-md-7 m-2 text-right">Opret Begivenhed</h4>
+    <section class="col-lg-3 mx-auto opret">
+      <label class="col-sm-12 text-md-center">Vælg en Title og et tidspunkt for begivenheden</label>
+      <input type="text" class="form-control" placeholder="Skriv Titel">
+      <section class="d-flex flex-row">
+        <input class="form-control col-5" type="time" value="00:00">
+        <input class="form-control col-7" type="date">
+    </section>
+      
+    </section>
+    <div class="form-group col-lg-7 mx-auto">
       <label for="exampleTextarea">Beskrivelse</label>
-      <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+      <textarea class="form-control" id="exampleTextarea" rows="6"></textarea>
     </div>
-    <div class="form-group">
-      <label>Dato</label>
-      <div class="input-append date form_datetime">
-          <input size="16" type="text" value="" readonly>
-          <span class="add-on"><i class="icon-th"></i></span>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <section class="d-flex justify-content-around"> 
+      <button type="submit" class="btn alert-success" style="color: cornsilk">Opret Begivenhed</button>
+    </section>
+   
   </fieldset>
 </form>
