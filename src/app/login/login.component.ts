@@ -9,15 +9,14 @@ import { UsersService } from '../users.service';
 
 export class LoginComponent implements OnInit {
 
-
-  users: any;
+  username: string = 'Mads';
+  password: string = '0000';
 
   constructor(private service: UsersService) {  }
 
   ngOnInit() {
-    this.service.getUser().subscribe( response => {
+    this.service.CheckUser(this.username, this.password).subscribe( response => {
       console.log(response);
-      this.users = response;
-    }); 
+    });
   }
 }

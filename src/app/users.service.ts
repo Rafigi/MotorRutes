@@ -6,11 +6,11 @@ import { LoginComponent } from './login/login.component';
   providedIn: 'root'
 })
 export class UsersService {
-private ApiUrl = 'https://localhost:44350/api/mc';
+private ApiUrl = 'https://localhost:44350/api/mc/';
 
   constructor( private _http: HttpClient) {}
 
-  getUser(){
-    return this._http.get(this.ApiUrl);
+  CheckUser(username: string, password: string ){
+    return this._http.get(this.ApiUrl + 'User?' + 'username=' + username + '&password=' + password);
   }
 }
