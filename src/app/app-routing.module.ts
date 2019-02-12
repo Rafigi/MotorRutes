@@ -6,6 +6,8 @@ import { OpretProfilComponent } from './opret-profil/opret-profil.component';
 import { BegivenhedComponent } from './begivenhed/begivenhed.component';
 import { OpretBegivenhedComponent } from './opret-begivenhed/opret-begivenhed.component';
 import { OmOsComponent } from './om-os/om-os.component';
+import { MineBegivenhederComponent } from './mine-begivenheder/mine-begivenheder.component';
+import { TilmeldteBegivenhederComponent } from './tilmeldte-begivenheder/tilmeldte-begivenheder.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -14,7 +16,9 @@ const routes: Routes = [
   {path: 'opret-profil', component: OpretProfilComponent},
   {path: 'begivenhed', component: BegivenhedComponent},
   {path: 'opret-begivenhed', component: OpretBegivenhedComponent},
-  {path: 'om-os', component: OmOsComponent}
+  {path: 'om-os', component: OmOsComponent},
+  {path: 'mine-begivenheder', component: MineBegivenhederComponent},
+  {path: 'tilmeldte-begivenheder', component: TilmeldteBegivenhederComponent}
 ];
 
 @NgModule({
