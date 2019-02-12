@@ -9,6 +9,7 @@ import { BegivenhederComponent } from './begivenheder/begivenheder.component';
 import { OpretProfilComponent } from './opret-profil/opret-profil.component';
 import { BegivenhedComponent } from './begivenhed/begivenhed.component';
 import { OpretBegivenhedComponent } from './opret-begivenhed/opret-begivenhed.component';
+import { OmOsComponent } from './om-os/om-os.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { OpretBegivenhedComponent } from './opret-begivenhed/opret-begivenhed.co
     BegivenhederComponent,
     OpretProfilComponent,
     BegivenhedComponent,
-    OpretBegivenhedComponent
+    OpretBegivenhedComponent,
+    OmOsComponent
   ],
   imports: [
     BrowserModule,
