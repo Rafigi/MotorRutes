@@ -7,6 +7,8 @@ import { MenuComponent } from './menu/menu.component';
 import { LoginComponent } from './login/login.component';
 import { BegivenhederComponent } from './begivenheder/begivenheder.component';
 import { OpretProfilComponent } from './opret-profil/opret-profil.component';
+import { BegivenhedComponent } from './begivenhed/begivenhed.component';
+import { OpretBegivenhedComponent } from './opret-begivenhed/opret-begivenhed.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { OpretProfilComponent } from './opret-profil/opret-profil.component';
     MenuComponent,
     LoginComponent,
     BegivenhederComponent,
-    OpretProfilComponent
+    OpretProfilComponent,
+    BegivenhedComponent,
+    OpretBegivenhedComponent
   ],
   imports: [
     BrowserModule,
