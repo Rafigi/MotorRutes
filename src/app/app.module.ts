@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { OpretBegivenhedComponent } from './opret-begivenhed/opret-begivenhed.co
 import { OmOsComponent } from './om-os/om-os.component';
 import { MineBegivenhederComponent } from './mine-begivenheder/mine-begivenheder.component';
 import { TilmeldteBegivenhederComponent } from './tilmeldte-begivenheder/tilmeldte-begivenheder.component';
+import { UsersService } from './users.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,10 @@ import { TilmeldteBegivenhederComponent } from './tilmeldte-begivenheder/tilmeld
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
