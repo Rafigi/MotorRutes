@@ -12,8 +12,9 @@ export class LoginComponent implements OnInit {
 
   constructor(private service: UsersService, private router: Router) {  }
 
-username: string;
-password: string;
+  Check: boolean = false;
+  username: string;
+  password: string;
   ngOnInit() {
   }
 
@@ -22,6 +23,7 @@ password: string;
       if (response === true) {
         this.router.navigate(['/begivenheder']);
       }
+      this.Check = true;
       console.log(response);
     });
   }
