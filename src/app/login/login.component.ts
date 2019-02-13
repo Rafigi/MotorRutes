@@ -12,14 +12,12 @@ export class LoginComponent implements OnInit {
 
   constructor(private service: UsersService, private router: Router) {  }
 
-username = '';
-password = '';
+username: string = '';
+password: string = '';
   ngOnInit() {
   }
 
-  login(user: string, pass: string): void {
-    this.username = user;
-    this.password = pass;
+  login(): void {
     this.service.CheckUser(this.username, this.password).subscribe( response => {
       if (response === true) {
         this.router.navigate(['/begivenheder']);
