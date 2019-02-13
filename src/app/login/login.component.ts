@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
+import {Router} from "@angular/router"  
 
 @Component({
   selector: 'app-login',
@@ -9,17 +10,20 @@ import { UsersService } from '../users.service';
 
 export class LoginComponent implements OnInit {
 
-  username: string;
-  password: string;
+  constructor(private service: UsersService, private router: Router) {  }
 
-  constructor(private service: UsersService) {  }
-
+username = '';
+password = '';
   ngOnInit() {
   }
 
-
-  Sumbit()
-  {  this.service.CheckUser(this.username, this.password).subscribe( response => {
+  login(user: string, pass: string): void {
+    this.username = user;
+    this.password = pass;
+    this.service.CheckUser(this.username, this.password).subscribe( response => {
+      if(response = true) {
+        this.router.navigate(['/begivenheder']);
+      }
       console.log(response);
     });
   }
