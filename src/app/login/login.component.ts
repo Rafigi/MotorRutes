@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
-import {Router} from "@angular/router"  
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,7 @@ password = '';
     this.username = user;
     this.password = pass;
     this.service.CheckUser(this.username, this.password).subscribe( response => {
-      if(response = true) {
+      if (response === true) {
         this.router.navigate(['/begivenheder']);
       }
       console.log(response);
