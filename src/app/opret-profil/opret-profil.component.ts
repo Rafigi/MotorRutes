@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../users.service';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-opret-profil',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OpretProfilComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: UsersService, private router: Router) { }
 
+  True: boolean = false;
+  False: boolean = false;
+  username: string;
+  password: string;
+  mail: string;
   ngOnInit() {
   }
 
+  object = { Username: this.username , Password: this.password, Mail: this.mail};
+  
+  opret(): void {
+    this.service.CreateUser(this.object).subscribe( response => {
+      if (response === true) {
+        this.True = true;
+      }
+      this.False = true;
+      console.log(response);
+    });
+  }
 }

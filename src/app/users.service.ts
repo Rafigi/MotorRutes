@@ -14,4 +14,8 @@ private ApiUrl = 'https://localhost:44350/api/mc/';
   CheckUser(username: string, password: string ){
     return this._http.get(this.ApiUrl + 'User?' + 'username=' + username + '&password=' + password);
   }
+
+  CreateUser(object){
+    return this._http.post(this.ApiUrl, object);
+  }
 }
