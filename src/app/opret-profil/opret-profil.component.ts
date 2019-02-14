@@ -31,7 +31,6 @@ export class OpretProfilComponent implements OnInit {
         this.False = true;
       }
       console.log(response);
-      
     });
   }
 }
