@@ -15,6 +15,7 @@ export class OpretProfilComponent implements OnInit {
 
   True: boolean = false;
   False: boolean = false;
+  Tomt: boolean = false;
   username: string;
   password: string;
   mail: string;
@@ -23,15 +24,20 @@ export class OpretProfilComponent implements OnInit {
   }
 
   opret(): void {
-    this.object = { Username: this.username , Password: this.password, Mail: this.mail};
-    this.service.CreateUser(this.object).subscribe( response => {
-      if (response === true) {
-        this.True = true;
-        this.username = this.password = this.mail = "";
-      } else {
-        this.False = true;
-      }
-      console.log(response);
+    if(!this.username || !this.password  || !this.mail){
+      this.Tomt = true;
+    } else {
+      this.Tomt = false;      
+      this.object = { Username: this.username , Password: this.password, Mail: this.mail};
+      this.service.CreateUser(this.object).subscribe( response => {
+        if (response === true) {
+          this.True = true;
+          this.username = this.password = this.mail = "";
+        } else {
+          this.False = true;
+        }
+        console.log(response);
     });
+  }
   }
 }
