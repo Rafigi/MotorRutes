@@ -27,6 +27,7 @@ export class OpretProfilComponent implements OnInit {
     this.service.CreateUser(this.object).subscribe( response => {
       if (response === true) {
         this.True = true;
+        this.username = this.password = this.mail = "";
       } else {
         this.False = true;
       }
