@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import {Router} from '@angular/router';
+import { Variable } from '@angular/compiler/src/render3/r3_ast';
 
 
 @Component({
@@ -17,18 +18,20 @@ export class OpretProfilComponent implements OnInit {
   username: string;
   password: string;
   mail: string;
+  object: any;
   ngOnInit() {
   }
 
-  object = { Username: this.username , Password: this.password, Mail: this.mail};
-  
   opret(): void {
+    this.object = { Username: this.username , Password: this.password, Mail: this.mail};
     this.service.CreateUser(this.object).subscribe( response => {
       if (response === true) {
         this.True = true;
+      } else {
+        this.False = true;
       }
-      this.False = true;
       console.log(response);
+      
     });
   }
 }
