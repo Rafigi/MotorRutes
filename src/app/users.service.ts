@@ -11,16 +11,17 @@ private ApiUrl = 'https://localhost:44350/api/mc/';
 
   constructor( private _http: HttpClient) {}
 
-  private loggedInStatus = false;
+  private loggedInStatus = JSON.parse(localStorage.getItem('LoggedIn' || 'false'));
 
   SetLoggedIn(value: boolean)
   {
-    this.loggedInStatus = value
+    this.loggedInStatus = value;
+    localStorage.setItem('LoggedIn', 'true');   
   }
 
   get isLoggedIn()
   {
-    return this.loggedInStatus;
+    return JSON.parse(localStorage.getItem('LoggedIn') || this.loggedInStatus.toString());
   }
 
   CheckUser(username: string, password: string ){
