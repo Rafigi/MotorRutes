@@ -8,17 +8,18 @@ import { OpretBegivenhedComponent } from './opret-begivenhed/opret-begivenhed.co
 import { OmOsComponent } from './om-os/om-os.component';
 import { MineBegivenhederComponent } from './mine-begivenheder/mine-begivenheder.component';
 import { TilmeldteBegivenhederComponent } from './tilmeldte-begivenheder/tilmeldte-begivenheder.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'begivenheder', component: BegivenhederComponent},
+  {path: 'begivenheder', component: BegivenhederComponent, canActivate: [AuthGuard]},
   {path: 'opret-profil', component: OpretProfilComponent},
-  {path: 'begivenhed', component: BegivenhedComponent},
-  {path: 'opret-begivenhed', component: OpretBegivenhedComponent},
+  {path: 'begivenhed', component: BegivenhedComponent, canActivate: [AuthGuard]},
+  {path: 'opret-begivenhed', component: OpretBegivenhedComponent, canActivate: [AuthGuard]},
   {path: 'om-os', component: OmOsComponent},
-  {path: 'mine-begivenheder', component: MineBegivenhederComponent},
-  {path: 'tilmeldte-begivenheder', component: TilmeldteBegivenhederComponent}
+  {path: 'mine-begivenheder', component: MineBegivenhederComponent, canActivate: [AuthGuard]},
+  {path: 'tilmeldte-begivenheder', component: TilmeldteBegivenhederComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

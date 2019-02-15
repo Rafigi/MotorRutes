@@ -21,7 +21,10 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.service.CheckUser(this.username, this.password).subscribe( response => {
       if (response === true) {
+        //Sender en true, at der er sendt det rigtige password og kode til servicens metode, som er false som standard.
+        this.service.SetLoggedIn(true);
         this.router.navigate(['/begivenheder']);
+        
       }
       this.Check = true;
       console.log(response);

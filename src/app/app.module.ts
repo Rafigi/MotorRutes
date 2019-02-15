@@ -15,6 +15,7 @@ import { OmOsComponent } from './om-os/om-os.component';
 import { MineBegivenhederComponent } from './mine-begivenheder/mine-begivenheder.component';
 import { TilmeldteBegivenhederComponent } from './tilmeldte-begivenheder/tilmeldte-begivenheder.component';
 import { UsersService } from './users.service';
+import { AuthGuard } from './auth.guard'
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { UsersService } from './users.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [UsersService],
+  providers: [UsersService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

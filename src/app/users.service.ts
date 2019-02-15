@@ -11,6 +11,18 @@ private ApiUrl = 'https://localhost:44350/api/mc/';
 
   constructor( private _http: HttpClient) {}
 
+  private loggedInStatus = false;
+
+  SetLoggedIn(value: boolean)
+  {
+    this.loggedInStatus = value
+  }
+
+  get isLoggedIn()
+  {
+    return this.loggedInStatus;
+  }
+
   CheckUser(username: string, password: string ){
     return this._http.get(this.ApiUrl + 'User?' + 'username=' + username + '&password=' + password);
   }
