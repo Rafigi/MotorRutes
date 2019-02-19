@@ -13,8 +13,6 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      //Denne kan sættes til true, så kan alle sider tilgåes uden at logge ind.
     return this.auth.isLoggedIn;
   }
-  
 }

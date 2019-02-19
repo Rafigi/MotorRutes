@@ -27,7 +27,7 @@ export class OpretProfilComponent implements OnInit {
     if(!this.username || !this.password  || !this.mail){
       this.Tomt = true;
     } else {
-      this.Tomt = false;      
+      this.Tomt = false;
       this.object = { Username: this.username , Password: this.password, Mail: this.mail};
       this.service.CreateUser(this.object).subscribe( response => {
         if (response === true) {

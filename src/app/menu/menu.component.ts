@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, RoutesRecognized} from '@angular/router';
+import { Router, RoutesRecognized} from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -10,13 +10,19 @@ export class MenuComponent implements OnInit {
 
   constructor(private routes: Router) { }
 
+  Nav: string;
+  nav = false;
+
   ngOnInit() {
+    this.Nav = localStorage.getItem('LoggedIn');
+    if (this.Nav === 'true') {
+      this.nav = true;
+    }
   }
 
-  Logud()
-  {
-    localStorage.removeItem('LoggedIn'); 
-    location.reload();
+  Logud() {
+    localStorage.removeItem('LoggedIn');
+    this.nav = false;
     this.routes.navigate(['/login']);
   }
 }

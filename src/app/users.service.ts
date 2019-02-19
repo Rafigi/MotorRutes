@@ -16,7 +16,7 @@ private ApiUrl = 'https://localhost:44350/api/mc/';
   SetLoggedIn(value: boolean)
   {
     this.loggedInStatus = value;
-    localStorage.setItem('LoggedIn', 'true');   
+    localStorage.setItem('LoggedIn', 'true');
   }
 
   get isLoggedIn()
