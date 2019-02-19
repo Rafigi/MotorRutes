@@ -6,7 +6,7 @@ import { Router, RoutesRecognized} from '@angular/router';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, DoCheck {
 
   constructor(private routes: Router) { }
 
@@ -14,6 +14,10 @@ export class MenuComponent implements OnInit {
   nav = false;
 
   ngOnInit() {
+   
+  }
+
+  ngDoCheck()	{
     this.Nav = localStorage.getItem('LoggedIn');
     if (this.Nav === 'true') {
       this.nav = true;
