@@ -15,11 +15,11 @@ export class LoginComponent implements OnInit {
 
   constructor( private service: UsersService, private router: Router ) {  }
 
-  loginInfo: any;
+  //Properties til fejl af connection og fejlbeskeder
   errorMessage: string = '';
   connection: boolean = false;
 
-  user: any;
+  //Reactive forms til login.
   ngOnInit() {
   }
     profileForm = new FormGroup({
@@ -27,6 +27,8 @@ export class LoginComponent implements OnInit {
     password: new FormControl(''),
   });
 
+  //User objekt og login metode.
+  user: any;
   login(): void {
 
     if(this.profileForm.invalid)

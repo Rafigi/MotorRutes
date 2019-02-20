@@ -7,8 +7,7 @@ import { empty } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersService {
-private ApiUrl = 'https://localhost:44350/api/mc/';
-private ApiUrlUser = 'https://localhost:44350/api/Users/authenticate';
+private ApiUrl = 'https://localhost:44350/api/Users/';
 
   constructor( private _http: HttpClient) {}
 
@@ -25,10 +24,10 @@ private ApiUrlUser = 'https://localhost:44350/api/Users/authenticate';
   }
 
   CheckUser(object){
-    return this._http.post(this.ApiUrlUser, object);
+    return this._http.post(this.ApiUrl + "authenticate", object);
   }
 
   CreateUser(object){
-    return this._http.post(this.ApiUrl, object);
+    return this._http.post(this.ApiUrl + "Opret", object);
   }
 }

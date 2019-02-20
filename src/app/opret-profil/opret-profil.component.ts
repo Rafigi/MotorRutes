@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import {Router} from '@angular/router';
-import { Variable } from '@angular/compiler/src/render3/r3_ast';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -13,31 +14,50 @@ export class OpretProfilComponent implements OnInit {
 
   constructor(private service: UsersService, private router: Router) { }
 
-  True: boolean = false;
-  False: boolean = false;
-  Tomt: boolean = false;
-  username: string;
-  password: string;
-  mail: string;
-  object: any;
+  check: boolean = false;
+  InfoMessage: string = '';
+
+  OpretProfil = new FormGroup({
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    email: new FormControl('', [Validators.required, Validators.email])
+  });
+
+  User: any;
   ngOnInit() {
   }
 
-  opret(): void {
-    if(!this.username || !this.password  || !this.mail){
-      this.Tomt = true;
-    } else {
-      this.Tomt = false;
-      this.object = { Username: this.username , Password: this.password, Mail: this.mail};
-      this.service.CreateUser(this.object).subscribe( response => {
-        if (response === true) {
-          this.True = true;
-          this.username = this.password = this.mail = "";
-        } else {
-          this.False = true;
+  Opret(): void {
+      if(this.OpretProfil.invalid)
+      {
+        return;
+      }
+      else
+      {
+        this.check = false;
+        this.User = { Username: this.OpretProfil.get('username').value, Password: this.OpretProfil.get('password').value, mail: this.OpretProfil.get('email').value};
+        this.service.CreateUser(this.User).subscribe((response:any) => {
+          this.InfoMessage = response['message'];
+          this.check = true;
+      },
+      (err: HttpErrorResponse) =>
+      {
+        if(err.status == 400)
+        {
+          this.InfoMessage = err.error['message'];
+          this.check = true;
         }
-        console.log(response);
-    });
+        else
+        {
+          this.InfoMessage = 'Der er ingen forbindelse til serveren.'
+          this.check = true;
+        }
+      });
+    }
   }
-  }
+
+  get Username() { return this.OpretProfil.get('username'); }
+  get Password() { return this.OpretProfil.get('password'); }
+  get Email() { return this.OpretProfil.get('email'); }
+  
 }
