@@ -17,7 +17,7 @@ export class MenuComponent implements OnInit {
   }
 
   ngDoCheck()	{
-    this.Nav = localStorage.getItem('LoggedIn');
+    this.Nav = localStorage.getItem('UserToken');
     if (this.Nav === 'true') {
       this.nav = true;
     }

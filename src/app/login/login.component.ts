@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   constructor( private service: UsersService, private router: Router) {  }
 
   user: any;
-  
+
   ngOnInit() {
   }
     profileForm = new FormGroup({
@@ -25,12 +25,12 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     this.user = { Username: this.profileForm.get('username').value, Password: this.profileForm.get('password').value};
-      this.service.CheckUser(this.user).subscribe((data: any) => {
-      localStorage.setItem('UserToken', data.access_token);
-        //Sender en true, at der er sendt det rigtige password og kode til servicens metode, som er false som standard.
-        this.service.SetLoggedIn(true);
-        this.router.navigate(['/begivenheder']);  
-    });  
+    this.service.CheckUser(this.user).subscribe((data: any) => {
+    localStorage.setItem('UserToken', data.access_token);
+    // Sender en true, at der er sendt det rigtige password og kode til servicens metode, som er false som standard.
+    this.service.SetLoggedIn(true);
+    this.router.navigate(['/begivenheder']);
+  });
   }
 
   get Username() { return this.profileForm.get('username'); }
