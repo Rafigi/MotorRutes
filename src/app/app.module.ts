@@ -16,7 +16,10 @@ import { OmOsComponent } from './om-os/om-os.component';
 import { MineBegivenhederComponent } from './mine-begivenheder/mine-begivenheder.component';
 import { TilmeldteBegivenhederComponent } from './tilmeldte-begivenheder/tilmeldte-begivenheder.component';
 import { UsersService } from './users.service';
-import { AuthGuard } from './auth.guard'
+import { AuthGuard } from './auth.guard';
+import { AgmCoreModule } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction';
+import { GeocodeService } from 'geocode';
 
 @NgModule({
   declarations: [
@@ -35,10 +38,14 @@ import { AuthGuard } from './auth.guard'
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule, 
-    ReactiveFormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBM4dBYGewehvlFZyudquC5fQnPmxoblhc'
+    }),
+    AgmDirectionModule
   ],
-  providers: [UsersService, AuthGuard],
+  providers: [UsersService, AuthGuard, GeocodeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

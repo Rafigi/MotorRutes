@@ -2,3 +2,7 @@
 
 <app-menu></app-menu>
 <router-outlet></router-outlet>
+<agm-map [latitude]="lat" [longitude]="lng">
+    <agm-direction [origin]="origin" [destination]="destination">
+    </agm-direction>
+  </agm-map>
