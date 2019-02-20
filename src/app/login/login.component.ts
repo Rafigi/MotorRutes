@@ -15,6 +15,10 @@ export class LoginComponent implements OnInit {
 
   constructor( private service: UsersService, private router: Router ) {  }
 
+  loginInfo: any;
+  errorMessage: string = '';
+  connection: boolean = false;
+
   user: any;
   ngOnInit() {
   }
@@ -26,17 +30,31 @@ export class LoginComponent implements OnInit {
   login(): void {
 
     if(this.profileForm.invalid)
-    {
+    {     
       return;
     }
     else
     {
+      this.connection = false;
       this.user = { Username: this.profileForm.get('username').value, Password: this.profileForm.get('password').value};
-        this.service.CheckUser(this.user).subscribe((data: any) => {
-          localStorage.setItem('UserToken', data.access_token);
+        this.service.CheckUser(this.user).subscribe((data: any) =>  {
+          localStorage.setItem('UserToken', data['token']);
+          localStorage.setItem('User', data['username']); 
           //Sender en true, at der er sendt det rigtige password og kode til servicens metode, som er false som standard.
           this.service.SetLoggedIn(true);
-          this.router.navigate(['/begivenheder']); 
+          this.router.navigate(['/begivenheder']);     
+      }, (err: HttpErrorResponse) =>
+      {
+        if(err.status == 400)
+        {
+          this.errorMessage = err.error['message'];
+          this.connection = true;
+        }
+        else
+        {
+          this.errorMessage = 'Der er ingen forbindelse til serveren.'
+          this.connection = true;
+        }
       });
     }
   }
