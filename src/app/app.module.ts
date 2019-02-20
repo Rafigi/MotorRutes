@@ -19,7 +19,7 @@ import { UsersService } from './users.service';
 import { AuthGuard } from './auth.guard';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
-import { GeocodeService } from 'geocode';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 @NgModule({
   declarations: [
@@ -41,11 +41,13 @@ import { GeocodeService } from 'geocode';
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBM4dBYGewehvlFZyudquC5fQnPmxoblhc'
+      apiKey: 'AIzaSyBM4dBYGewehvlFZyudquC5fQnPmxoblhc',
+      libraries: ["places"]
     }),
-    AgmDirectionModule
+    AgmDirectionModule,
+    GooglePlaceModule
   ],
-  providers: [UsersService, AuthGuard, GeocodeService],
+  providers: [UsersService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-places-autocomplete.directive';
+import { ViewChild, ElementRef, NgZone, } from '@angular/core';
+import { MapsAPILoader } from '@agm/core';
+
 
 @Component({
   selector: 'app-root',
@@ -6,18 +10,42 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public lat: Number = 24.799448;
+
+public lat: Number = 24.799448;
 public lng: Number = 120.979021;
+public lat2: Number = 24.799448;
+public lng2: Number = 120.979021;
  
 public origin: any;
 public destination: any;
+
+@ViewChild('places') places: GooglePlaceDirective;
+@ViewChild('search' ) public searchElement: ElementRef;
  
 ngOnInit() {
   this.getDirection();
 }
 
 getDirection() {
-  this.origin = { lat: 24.799448, lng: 120.979021 };
-  this.destination = { lat: 24.799524, lng: 120.975017 };
-}}
+  this.origin = { lat: this.lat, lng: this.lng };
+  this.destination = { lat: this.lat2, lng: this.lng2 };
+}
+constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {  }
+    public handleAddressChange(address: Address) {
+        console.log(address.geometry.location.lng());
+        console.log(address.geometry.location.lat());
+        console.log(address.geometry.location.toJSON());
+        console.log(address.geometry.viewport.getNorthEast());
+        this.lng = address.geometry.location.lng();
+        this.lat  = address.geometry.location.lat();
+    }
+    public handleAddressChange2(address: Address) {
+      console.log(address.geometry.location.lng());
+      console.log(address.geometry.location.lat());
+      console.log(address.geometry.location.toJSON());
+      console.log(address.geometry.viewport.getNorthEast());
+      this.lng2 = address.geometry.location.lng();
+      this.lat2  = address.geometry.location.lat();
+  }
+}
 
