@@ -24,8 +24,13 @@ export class OpretProfilComponent implements OnInit {
   OpretProfil = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    confirmPassword: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email])
-  });
+  },
+  {
+    validators: ConfirmPasswordValidator.MatchPassword
+  } 
+  );
 
   User: any;
   ngOnInit() {
@@ -63,6 +68,7 @@ export class OpretProfilComponent implements OnInit {
   }
 
   get Username() { return this.OpretProfil.get('username'); }
+  get ConfirmPassword() { return this.OpretProfil.get('confirmPassword'); }
   get Password() { return this.OpretProfil.get('password'); }
   get Email() { return this.OpretProfil.get('email'); }
   
