@@ -16,7 +16,10 @@ import { OmOsComponent } from './om-os/om-os.component';
 import { MineBegivenhederComponent } from './mine-begivenheder/mine-begivenheder.component';
 import { TilmeldteBegivenhederComponent } from './tilmeldte-begivenheder/tilmeldte-begivenheder.component';
 import { UsersService } from './users.service';
-import { AuthGuard } from './auth.guard'
+import { AuthGuard } from './auth.guard';
+import { AgmCoreModule } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 @NgModule({
   declarations: [
@@ -35,8 +38,14 @@ import { AuthGuard } from './auth.guard'
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule, 
-    ReactiveFormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBM4dBYGewehvlFZyudquC5fQnPmxoblhc',
+      libraries: ["places"]
+    }),
+    AgmDirectionModule,
+    GooglePlaceModule
   ],
   providers: [UsersService, AuthGuard],
   bootstrap: [AppComponent]

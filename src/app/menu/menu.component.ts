@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RoutesRecognized} from '@angular/router';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,25 +9,27 @@ import { Router, RoutesRecognized} from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private routes: Router) { }
+  constructor(private routes: Router, private service: UsersService) { }
 
   Nav: string;
   nav = false;
+  check = false;
 
   ngOnInit() {
-   
   }
 
   ngDoCheck()	{
-    this.Nav = localStorage.getItem('LoggedIn');
-    if (this.Nav === 'true') {
+    this.check = this.service.isLoggedIn;
+    if (this.check === true) {
       this.nav = true;
+    } else {
+      this.nav = false;
     }
   }
 
   Logud() {
     localStorage.removeItem('UserToken');
-    this.nav = false;
+    this.service.SetLoggedIn(false);
     this.routes.navigate(['/login']);
   }
 }

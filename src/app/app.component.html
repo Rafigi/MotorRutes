@@ -2,3 +2,10 @@
 
 <app-menu></app-menu>
 <router-outlet></router-outlet>
+<input ngx-google-places-autocomplete class="form-control text-center" (onAddressChange)="handleAddressChange($event)"/>
+<input ngx-google-places-autocomplete class="form-control text-center" (onAddressChange)="handleAddressChange2($event)"/>
+<button type="button" class="btn btn-outline-primary btn-lg col-sm-12" (click)="getDirection()">SE RUTE</button>
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-direction [origin]="origin" [destination]="destination">
+  </agm-direction>
+</agm-map>

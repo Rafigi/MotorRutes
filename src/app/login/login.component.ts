@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   constructor( private service: UsersService, private router: Router ) {  }
 
   user: any;
-  responseStatus: number;
   ngOnInit() {
   }
     profileForm = new FormGroup({
