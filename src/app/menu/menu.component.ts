@@ -6,7 +6,7 @@ import { Router, RoutesRecognized} from '@angular/router';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit, DoCheck {
+export class MenuComponent implements OnInit {
 
   constructor(private routes: Router) { }
 
@@ -25,7 +25,7 @@ export class MenuComponent implements OnInit, DoCheck {
   }
 
   Logud() {
-    localStorage.removeItem('LoggedIn');
+    localStorage.removeItem('UserToken');
     this.nav = false;
     this.routes.navigate(['/login']);
   }
