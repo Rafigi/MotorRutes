@@ -11,6 +11,7 @@
                 <div *ngIf="Password.errors.required">Du skal vælge et Password</div> 
                 <div *ngIf="Password.errors.minlength">Passwordet skal minimum være på 6 tegn.</div> 
             </div>
+            
   </div>
 
     <div class="form-group">    
@@ -24,7 +25,11 @@
       <p>{{InfoMessage}}</p>
     </div>
 
-    <button type="submit" class="btn btn-outline-primary btn-lg col-sm-12" style="color: red" >Opret</button>
+    <div *ngIf="!Profiloprettet">
+      <button type="submit" class="btn btn-outline-primary btn-lg col-sm-12" style="color: red" >Opret</button>
+    </div>
+
+    
     <button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="color: red; margin-top: 1em;" routerLink="/login">Tilbage</button>
   </form>
 </section>

@@ -4,6 +4,8 @@ import {Router} from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 
+import { ConfirmPasswordValidator } from '../confirm-password.validator';
+
 
 @Component({
   selector: 'app-opret-profil',
@@ -14,6 +16,8 @@ export class OpretProfilComponent implements OnInit {
 
   constructor(private service: UsersService, private router: Router) { }
 
+
+  Profiloprettet: boolean = false;
   check: boolean = false;
   InfoMessage: string = '';
 
@@ -39,6 +43,8 @@ export class OpretProfilComponent implements OnInit {
         this.service.CreateUser(this.User).subscribe((response:any) => {
           this.InfoMessage = response['message'];
           this.check = true;
+          this.Profiloprettet = true;
+          this.OpretProfil.disable();
       },
       (err: HttpErrorResponse) =>
       {
