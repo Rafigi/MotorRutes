@@ -11,10 +11,10 @@ import { MapsAPILoader } from '@agm/core';
 })
 export class AppComponent {
 
-public lat: Number = 24.799448;
-public lng: Number = 120.979021;
-public lat2: Number = 24.799448;
-public lng2: Number = 120.979021;
+public lat: Number = 0;
+public lng: Number = 0;
+public lat2: Number = 0;
+public lng2: Number = 0;
  
 public origin: any;
 public destination: any;
