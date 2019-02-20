@@ -24,7 +24,7 @@ export class MenuComponent implements OnInit {
   }
 
   Logud() {
-    localStorage.removeItem('LoggedIn');
+    localStorage.removeItem('UserToken');
     this.nav = false;
     this.routes.navigate(['/login']);
   }

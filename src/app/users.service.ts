@@ -8,24 +8,24 @@ import { empty } from 'rxjs';
 })
 export class UsersService {
 private ApiUrl = 'https://localhost:44350/api/mc/';
+private ApiUrlUser = 'https://localhost:44350/api/Users/authenticate';
 
   constructor( private _http: HttpClient) {}
 
-  private loggedInStatus = JSON.parse(localStorage.getItem('LoggedIn' || 'false'));
+  private loggedInStatus = false;
 
   SetLoggedIn(value: boolean)
   {
     this.loggedInStatus = value;
-    localStorage.setItem('LoggedIn', 'true');
   }
 
   get isLoggedIn()
   {
-    return JSON.parse(localStorage.getItem('LoggedIn') || this.loggedInStatus.toString());
+    return this.loggedInStatus;
   }
 
-  CheckUser(username: string, password: string ){
-    return this._http.get(this.ApiUrl + 'User?' + 'username=' + username + '&password=' + password);
+  CheckUser(object){
+    return this._http.post(this.ApiUrlUser, object);
   }
 
   CreateUser(object){
