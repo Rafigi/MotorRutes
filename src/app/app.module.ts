@@ -20,6 +20,7 @@ import { AuthGuard } from './auth.guard';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { OpretRuteComponent } from './opret-rute/opret-rute.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
     OpretBegivenhedComponent,
     OmOsComponent,
     MineBegivenhederComponent,
-    TilmeldteBegivenhederComponent
+    TilmeldteBegivenhederComponent,
+    OpretRuteComponent
   ],
   imports: [
     BrowserModule,
