@@ -12,7 +12,7 @@ import { AuthGuard } from './auth.guard';
 import { OpretRuteComponent } from './opret-rute/opret-rute.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '', redirectTo: '/opret-rute', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'begivenheder', component: BegivenhederComponent, canActivate: [AuthGuard]},
   {path: 'opret-profil', component: OpretProfilComponent},
@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'om-os', component: OmOsComponent},
   {path: 'mine-begivenheder', component: MineBegivenhederComponent, canActivate: [AuthGuard]},
   {path: 'tilmeldte-begivenheder', component: TilmeldteBegivenhederComponent, canActivate: [AuthGuard]},
-  {path: 'opret-rute', component: OpretRuteComponent, canActivate: [AuthGuard]}
+  {path: 'opret-rute', component: OpretRuteComponent}
 ];
 
 @NgModule({

@@ -44,7 +44,7 @@ import { OpretRuteComponent } from './opret-rute/opret-rute.component';
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBM4dBYGewehvlFZyudquC5fQnPmxoblhc',
-      libraries: ["places"]
+      libraries: ['places', 'geometry']
     }),
     AgmDirectionModule,
     GooglePlaceModule

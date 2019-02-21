@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete/ngx-google-places-autocomplete.directive';
 import { ViewChild, ElementRef, NgZone, } from '@angular/core';
-import { MapsAPILoader } from '@agm/core';
+import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 
 @Component({
@@ -11,14 +11,15 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 })
 export class OpretRuteComponent implements OnInit {
 
-public lat: Number = 0;
-public lng: Number = 0;
-public lat2: Number = 0;
-public lng2: Number = 0;
+public lat: any = 0;
+public lng: any = 0;
+public lat2: any = 0;
+public lng2: any = 0;
 public origin: any;
 public destination: any;
 check: any;
 public avoidHighways: boolean;
+distance: any;
 
 @ViewChild('places') places: GooglePlaceDirective;
 @ViewChild('search' ) public searchElement: ElementRef;
@@ -26,7 +27,6 @@ public avoidHighways: boolean;
 ngOnInit() {
   this.getDirection();
 }
-
 
 getDirection() {
   this.origin = { lat: this.lat, lng: this.lng };

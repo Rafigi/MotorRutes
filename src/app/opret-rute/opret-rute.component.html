@@ -1,15 +1,19 @@
-<input ngx-google-places-autocomplete class="form-control text-center" (onAddressChange)="handleAddressChange($event)"/>
-<input ngx-google-places-autocomplete class="form-control text-center" (onAddressChange)="handleAddressChange2($event)"/>
+<div id="felt">
+<input ngx-google-places-autocomplete class="form-control text-center" placeholder="Indtast start lokation" (onAddressChange)="handleAddressChange($event)" />
+<input ngx-google-places-autocomplete class="form-control text-center" placeholder="Indtast slut lokation" (onAddressChange)="handleAddressChange2($event)" />
 <fieldset class="form-group">
   <div class="form-check">
-    <label class="form-check-label">
-      <input class="form-check-input" type="checkbox" value="" checked="" [(ngModel)]="check" data-md-icheck >
+    <label class="form-check-label" style="margin-top: 1em">
+      <input class="form-check-input" type="checkbox" value="" checked="" [(ngModel)]="check" data-md-icheck>
       Undgå motorvej
     </label>
   </div>
-</fieldset>
-<button type="button" class="btn btn-outline-primary btn-lg col-sm-12" (click)="getDirection()">SE RUTE</button>
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-direction [origin]="origin" [destination]="destination" [avoidHighways]="avoidHighways" >
+<button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="margin-bottom: 1em; margin-top: 1em" (click)="getDirection()">SE RUTE</button>
+<label [(ngModel)]="distance">Km: </label>
+<agm-map [latitude]="lat" [longitude]="lng" >
+  <agm-direction [origin]="origin" [destination]="destination" [avoidHighways]="avoidHighways">
   </agm-direction>
 </agm-map>
+<button type="button" class="btn btn-outline-success btn-lg col-sm-12" style="margin-top: 1em">Opret Rute</button>
+</fieldset>
+</div>
