@@ -12,10 +12,9 @@
                 <div *ngIf="Password.errors.minlength">Passwordet skal minimum være på 6 tegn.</div> 
             </div>
             <input type="password" formControlName="confirmPassword" class="form-control text-center"  placeholder="Password" required>  
-            <div *ngIf="ConfirmPassword.errors && ConfirmPassword.errors.ConfirmPassword" class="alert alert-danger">
-                Skriv passwordet en gang til i denne boks.
-            </div>
-            
+            <div *ngIf="ConfirmPassword.touched && ConfirmPassword.invalid" class="alert alert-danger">
+                <div *ngIf="ConfirmPassword.errors.ConfirmPassword">Passwordene er ikke ens.</div> 
+            </div>       
   </div>
 
     <div class="form-group">    
