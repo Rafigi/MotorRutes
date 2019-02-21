@@ -12,6 +12,17 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 })
 export class AppComponent {
 
+<<<<<<< HEAD
+=======
+public lat: Number = 0;
+public lng: Number = 0;
+public lat2: Number = 0;
+public lng2: Number = 0;
+
+ 
+public origin: any;
+public destination: any;
+>>>>>>> DelevopmentBranch
 
 }
 

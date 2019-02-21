@@ -1,29 +1,38 @@
 <section class="col-lg-3 mx-auto Opret">
-  <form #opretForm="ngForm">
+  <form [formGroup]="OpretProfil" (ngSubmit)="Opret()">
   <div class="form-group">
     <h3 class="text-md-center" style="color: white;">Opret Bruger</h3>
-    <input type="text" class="form-control text-center"  aria-describedby="text" placeholder="Brugernavn" required
-    [(ngModel)]="username" name="username">
-  <input type="password" class="form-control text-center"  placeholder="Password" required 
-    [(ngModel)]="password" name="password">    
+      <input type="text" formControlName="username" class="form-control text-center" placeholder="Brugernavn" required>
+        <div *ngIf="Username.invalid && (Username.dirty || Username.touched)" class="alert alert-danger">
+            <div *ngIf="Username.errors.required">Du skal vælge et Brugernavn</div>
+        </div>
+          <input type="password" formControlName="password" class="form-control text-center"  placeholder="Password" required>  
+            <div *ngIf="Password.invalid && (Password.dirty || Password.touched)" class="alert alert-danger">
+                <div *ngIf="Password.errors.required">Du skal vælge et Password</div> 
+                <div *ngIf="Password.errors.minlength">Passwordet skal minimum være på 6 tegn.</div> 
+            </div>
+            <input type="password" formControlName="confirmPassword" class="form-control text-center"  placeholder="Password" required>  
+            <div *ngIf="ConfirmPassword.touched && ConfirmPassword.invalid" class="alert alert-danger">
+                <div *ngIf="ConfirmPassword.errors.ConfirmPassword">Passwordene er ikke ens.</div> 
+            </div>       
   </div>
-  <div class="form-group">    
-    <input type="email" class="form-control text-center" aria-describedby="emailHelp" placeholder="Email" required
-    [(ngModel)]="mail" name="mail">
-  </div>
-  <div [hidden]="!False"
-     class="alert alert-danger">
-  Der er sket en fejl
-  </div>
-  <div [hidden]="!True"
-     class="alert alert-success">
-  Oprettet!
-  </div>
-  <div [hidden]="!Tomt"
-     class="alert alert-danger">
-  Udfyld alle felter!
-  </div>
-  <button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="color: red" (click)="opret();" >Opret</button>
-  <button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="color: red; margin-top: 1em;" routerLink="/login">Tilbage</button>
+
+    <div class="form-group">    
+      <input type="email" class="form-control text-center" formControlName="email" placeholder="Email" required>
+    </div>
+    <div *ngIf="Email.invalid && (Email.dirty || Email.touched)"class="alert alert-danger">
+      <div *ngIf="Email.errors.required">Der skal være en Email</div> 
+      <div *ngIf="Email.errors.email">Ikke korrekt mail skrevet</div> 
+    </div>
+    <div *ngIf="check">
+      <p>{{InfoMessage}}</p>
+    </div>
+
+    <div *ngIf="!Profiloprettet">
+      <button type="submit" class="btn btn-outline-primary btn-lg col-sm-12" style="color: red" >Opret</button>
+    </div>
+
+    
+    <button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="color: red; margin-top: 1em;" routerLink="/login">Tilbage</button>
   </form>
 </section>
