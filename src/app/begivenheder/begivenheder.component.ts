@@ -14,7 +14,6 @@ export class BegivenhederComponent implements OnInit {
   begivenheder: Begivenheden[] = [];
   constructor(private service: BegivenhedService) {
     this.service.GetAll().subscribe((res: Begivenheden[])=>{
-      console.log(res);
       this.begivenheder = res;
     });
    }

@@ -4,17 +4,17 @@
     <tr>
       <th scope="col">Status</th>
       <th scope="col">Dato</th>
-      <th scope="col">By</th>
+      <th scope="col">Start By</th>
       <th scope="col">Tilmeldte</th>
       <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-    <tr class="table-primary rows" routerLink="/begivenhed">
-      <th scope="row">Aktiv</th>
-      <td>D. 15/02 - 2018 kl. 13:00</td>
-      <td>Århus</td>
-      <td>102</td>
+    <tr *ngFor="let begivenhed of begivenheder" class="table-primary rows " routerLink="/begivenhed">
+      <th class="text-white" scope="row">Aktiv</th>
+      <td class="text-white"> Titel: {{begivenhed.titel}} Dato:{{begivenhed.dato}} Tidpunkt{{begivenhed.tid}}</td>
+      <td class="text-white">{{begivenhed.startBy}}</td>
+      <td class="text-white">102</td>
       <td><button type="button" class="btn btn-success">Ret</button></td>
     </tr>
     <tr class="table-danger rows" routerLink="/begivenhed">

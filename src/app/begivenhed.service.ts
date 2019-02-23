@@ -20,4 +20,9 @@ export class BegivenhedService {
   GetAll(){
     return this._http.get(this.ApiUrl + 'GetAll');
   }
+
+  GetMine(username: string)
+  {
+    return this._http.get(this.ApiUrl + username)
+  }
 }
