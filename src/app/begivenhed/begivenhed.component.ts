@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BegivenhedService } from '../begivenhed.service';
-import { Begivenheden } from '../begivenheden';
-import { tryParse } from 'selenium-webdriver/http';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-begivenhed',
@@ -10,8 +9,9 @@ import { tryParse } from 'selenium-webdriver/http';
 })
 export class BegivenhedComponent implements OnInit {
   
-
+  checkTilmeldt: boolean;
   private message: string;
+  TilFramelding: object;
 
   begivenheder: object;
   constructor(private service: BegivenhedService) {  }
@@ -21,6 +21,31 @@ export class BegivenhedComponent implements OnInit {
     this.service.ShowBegivenhed(this.message).subscribe((res: object)=>{
       this.begivenheder = res    
     });
+    this.CheckTilmelding();
   }
 
+  Tilmeld()
+  {
+    this.TilFramelding = {username: localStorage.getItem('User'), FK_BID: this.message}
+    this.service.TilmeldBegivenhed(this.TilFramelding).subscribe((data: any ) => {
+    });
+    this.checkTilmeldt = true;
+  }
+
+  Afmeld()
+  {
+    this.TilFramelding = {username: localStorage.getItem('User'), FK_BID: this.message}
+    this.service.AfmeldBegivenhed(this.TilFramelding).subscribe((data: any) => {
+      this.checkTilmeldt = false;
+      });
+
+  }
+
+  CheckTilmelding()
+  {
+    this.service.CheckTilmelding(localStorage.getItem('User'), this.message).subscribe((data: boolean) => {
+      this.checkTilmeldt = data
+    });
+
+  }
 }

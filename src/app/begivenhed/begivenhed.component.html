@@ -3,8 +3,11 @@
   <p class="lead">Fra {{begivenhed.startBy}} til {{begivenhed.slutBy}}<br>{{begivenhed.dato}} {{begivenhed.tid}}</p>
   <hr class="my-1">
   <p>{{begivenhed.beskrivelse}}</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Tilmeld</a>
+  <p class="lead text-white" *ngIf="!checkTilmeldt">
+    <a class="btn btn-primary btn-lg" (click)="Tilmeld()" role="button">Tilmeld</a>
+  </p>
+  <p class="lead text-white" *ngIf="checkTilmeldt">
+    <a class="btn btn-danger btn-lg" (click)="Afmeld()" role="button">Frameld</a>
   </p>
   <div class="card border-primary mb-2" style="max-width: 20rem;">
     <div class="card-header">Antal: 24</div>

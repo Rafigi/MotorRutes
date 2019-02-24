@@ -21,6 +21,22 @@ export class BegivenhedService {
   }
 
 
+  TilmeldBegivenhed(object)
+  {
+    return this._http.post(this.ApiUrl + "tilmeld", object);
+  }
+
+  AfmeldBegivenhed(object)
+  {
+    return this._http.post(this.ApiUrl + "afmeld", object);
+  }
+
+  CheckTilmelding(username: string, BID: any)
+  {
+    return this._http.get(this.ApiUrl + "Check?username="+  username + "&FK_BID=" + BID);
+  }
+
+
   CreateBegivenhed(object){
     return this._http.post(this.ApiUrl + "Opret", object);
   }
