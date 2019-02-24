@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BegivenhedService} from '../begivenhed.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-opret-begivenhed',
@@ -11,20 +12,18 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class OpretBegivenhedComponent implements OnInit {
 
   constructor(private service: BegivenhedService) { }
-
   ngOnInit() { 
   }
 
   Profiloprettet: boolean = false;
-  check: boolean = false;
-  InfoMessage: string = '';
+  check: boolean = false; // Hvis true, viser den fejlbeskeden i HTML
+  InfoMessage: string = ''; //Info beskeden som skal vises til brugeren
 
-  begivenhed: any;
+  begivenhed: any; // Indholder begivenhedens info, som skal sendes videre til DB
 
   OpretBegivnhed = new FormGroup({
     titel: new FormControl('', Validators.required),
     beskrivelse: new FormControl('', Validators.required),
-    oprettetDato: new  FormControl(new Date().toLocaleDateString()),
     dato: new FormControl('', Validators.required),
     tid: new FormControl('', Validators.required),
     fk_user: new FormControl('')
@@ -38,8 +37,8 @@ export class OpretBegivenhedComponent implements OnInit {
     }
     else
     {
-      this.check = false;
-      this.begivenhed = { Titel: this.OpretBegivnhed.get('titel').value, Beskrivelse: this.OpretBegivnhed.get('beskrivelse').value, Oprettet: this.OpretBegivnhed.get('oprettetDato').value, Dato: this.OpretBegivnhed.get('dato').value, Tid: this.OpretBegivnhed.get('tid').value, FK_UID: 1, FK_RID: 1 };
+      this.check = false; 
+      this.begivenhed = { Titel: this.OpretBegivnhed.get('titel').value, Beskrivelse: this.OpretBegivnhed.get('beskrivelse').value, Dato: moment(this.OpretBegivnhed.get('dato').value).format('L'), Tid: this.OpretBegivnhed.get('tid').value, FK_UID: 1, FK_RID: 8 };
       this.service.CreateBegivenhed(this.begivenhed).subscribe((response: any) => {
       this.InfoMessage = response['message'];
       this.check = true;
@@ -64,7 +63,6 @@ export class OpretBegivenhedComponent implements OnInit {
 
   get Titel() {return this.OpretBegivnhed.get('titel')};
   get Beskrivelse() {return this.OpretBegivnhed.get('beskrivelse')};
-  get OprettetDato() {return this.OpretBegivnhed.get('oprettetDato')};
   get Dato() {return this.OpretBegivnhed.get('dato')};
   get Tid() {return this.OpretBegivnhed.get('tid')};
 

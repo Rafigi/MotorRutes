@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BegivenhedService } from '../begivenhed.service';
 import { Begivenheden } from '../begivenheden';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-begivenheder',
@@ -11,15 +10,24 @@ import { Observable } from 'rxjs';
 })
 export class BegivenhederComponent implements OnInit {
 
-  begivenheder: Begivenheden[] = [];
+  begivenheder: Begivenheden[];
   constructor(private service: BegivenhedService) {
     this.service.GetAll().subscribe((res: Begivenheden[])=>{
-      this.begivenheder = res;
+      this.begivenheder = res
     });
-   }
+    
+  }
+
+  message:string;
+  Showthis(id: string)
+  {
+    this.service.changeMessage(id)    
+  }
+  
+
   
   ngOnInit() {
-    
+    this.service.currentMessage.subscribe(message => this.message = message)
   }
 
   //Forms til søgning

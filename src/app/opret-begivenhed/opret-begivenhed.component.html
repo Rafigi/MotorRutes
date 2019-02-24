@@ -10,7 +10,7 @@
       <section class="d-flex flex-row">
         <input formControlName="tid" class="form-control col-5" type="time" value="00:00" required>
         
-        <input formControlName="dato" class="form-control col-7" type="date" required>  
+        <input formControlName="dato" placeholder="dd/mm/yyyy" class="form-control col-7" type="date" required>  
     </section>
     <div *ngIf="Tid.invalid && (Tid.dirty || Tid.touched)" class="alert alert-danger">
         <div *ngIf="Tid.errors.required">Vælg et klokkeslæt</div> 
@@ -32,7 +32,7 @@
     <section class="d-flex justify-content-around" *ngIf="!Profiloprettet">
       <button type="submit" class="btn alert-success" style="color: cornsilk">Opret Begivenhed</button>
     </section>
-    <button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="color: red; margin-top: 1em;" routerLink="/login">Tilbage</button>
+    <button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="color: red; margin-top: 1em;" routerLink="/mine-begivenheder">Tilbage</button>
    
   </fieldset>
 </form>

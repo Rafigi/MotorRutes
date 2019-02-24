@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Begivenheden} from '../app/begivenheden';
-import { Observable} from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { __values } from 'tslib';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,13 @@ import { map } from 'rxjs/operators';
 export class BegivenhedService {
   private ApiUrl = 'https://localhost:44350/api/Begivenhed/';
   constructor(private _http: HttpClient) { }
+  
+  private messageSource = new BehaviorSubject('default message');
+  currentMessage = this.messageSource.asObservable();
+
+  changeMessage(message: string) {
+    this.messageSource.next(message)
+  }
 
 
   CreateBegivenhed(object){
@@ -24,5 +32,10 @@ export class BegivenhedService {
   GetMine(username: string)
   {
     return this._http.get(this.ApiUrl + username)
+  }
+
+  ShowBegivenhed(id: any)
+  {
+    return this._http.get(this.ApiUrl + 'BID/' + id)
   }
 }

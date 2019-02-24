@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BegivenhedService } from '../begivenhed.service';
+import { Begivenheden } from '../begivenheden';
+import { tryParse } from 'selenium-webdriver/http';
 
 @Component({
   selector: 'app-begivenhed',
@@ -6,10 +9,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./begivenhed.component.css']
 })
 export class BegivenhedComponent implements OnInit {
+  
 
-  constructor() { }
+  private message: string;
+
+  begivenheder: object;
+  constructor(private service: BegivenhedService) {  }
 
   ngOnInit() {
+    this.service.currentMessage.subscribe(message => this.message = message)
+    this.service.ShowBegivenhed(this.message).subscribe((res: object)=>{
+      this.begivenheder = res    
+    });
   }
 
 }
