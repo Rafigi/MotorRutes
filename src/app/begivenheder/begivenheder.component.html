@@ -5,68 +5,13 @@
     </section>
 
 <section class="d-flex col-12 justify-content-start flex-wrap">
-    
-  <section class="card text-white bg-primary mb-3 rute " style="max-width: 30rem;">
-      <div class="card-header text-center">Begivenhed starter: Dato: 12/12/12 kl. 12:12</div>
+  <section *ngFor="let begivenhed of begivenheder" class="card text-white bg-primary mb-3 rute " style="max-width: 30rem;">
+      <div class="card-header float-left"> Title: <p class="float-right text-warning"> Dato: {{begivenhed.dato}} <br> Tidpunkt: {{begivenhed.tid}} </p> <br> {{begivenhed.titel}}</div>
       <div class="card-body">
-        <h4 class="card-title text-center">Fra Herning til Vejle</h4>
-        <p class="card-text text-center">Beskrivelse af turen og muligvis nogle informationer fra brugeren.</p>
-        <h5 class="card-footer text-center">Tilmeldte: 22 </h5>
-        <button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="color: white" routerLink="/begivenhed">Se Mere...</button>
+        <h4 class="card-title text-center">Fra {{begivenhed.startBy}} til {{begivenhed.slutBy}}</h4>
+        <p class="card-text text-center">{{begivenhed.beskrivelse}} </p>
+        <h5 class="card-footer text-center text-success">Tilmeldte: 22 </h5>
+        <button type="button" (click)="Showthis(begivenhed.bid)" class="btn btn-outline-primary btn-lg col-sm-12" style="color: white" routerLink="/begivenhed">Se Mere...</button>
       </div>
   </section>
-  <section class="card text-white bg-primary mb-3 rute" style="max-width: 30rem;">
-      <div class="card-header text-center">Begivenhed starter: Dato: 12/12/12 kl. 12:12</div>
-      <div class="card-body">
-        <h4 class="card-title text-center">Fra Odense til Læsø</h4>
-        <p class="card-text text-center">Beskrivelse af turen og muligvis nogle informationer fra brugeren.</p>
-        <h5 class="card-footer text-center">Tilmeldte: 17 </h5>
-        <button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="color: white" routerLink="/begivenhed">Se Mere...</button>
-      </div>
-  </section>
-  <section class="card text-white bg-primary mb-3 rute" style="max-width: 30rem;">
-      <div class="card-header text-center">Begivenhed starter: Dato: 12/12/12 kl. 12:12</div>
-      <div class="card-body">
-        <h4 class="card-title text-center">Fra Odense til Læsø</h4>
-        <p class="card-text text-center">Beskrivelse af turen og muligvis nogle informationer fra brugeren.</p>
-        <h5 class="card-footer text-center">Tilmeldte: 33 </h5>
-        <button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="color: white" routerLink="/begivenhed">Se Mere...</button>
-      </div>
-  </section>
-  <section class="card text-white bg-primary mb-3 rute" style="max-width: 30rem;">
-      <div class="card-header text-center">Begivenhed starter: Dato: 12/12/12 kl. 12:12</div>
-      <div class="card-body">
-        <h4 class="card-title text-center">Fra Odense til Læsø</h4>
-        <p class="card-text text-center">Beskrivelse af turen og muligvis nogle informationer fra brugeren.</p>
-        <h5 class="card-footer text-center">Tilmeldte: 137 </h5>
-        <button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="color: white" routerLink="/begivenhed">Se Mere...</button>
-      </div>
-  </section>
-  <section class="card text-white bg-primary mb-3 rute" style="max-width: 30rem;">
-      <div class="card-header text-center">Begivenhed starter: Dato: 12/12/12 kl. 12:12</div>
-      <div class="card-body">
-        <h4 class="card-title text-center">Fra Odense til Læsø</h4>
-        <p class="card-text text-center">Beskrivelse af turen og muligvis nogle informationer fra brugeren.</p>
-        <h5 class="card-footer text-center">Tilmeldte: 137 </h5>
-        <button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="color: white" routerLink="/begivenhed">Se Mere...</button>
-      </div>
-  </section>
-  <section class="card text-white bg-primary mb-3 rute" style="max-width: 30rem;">
-    <div class="card-header text-center">Begivenhed starter: Dato: 12/12/12 kl. 12:12</div>
-    <div class="card-body">
-      <h4 class="card-title text-center">Fra Odense til Læsø</h4>
-      <p class="card-text text-center">Beskrivelse af turen og muligvis nogle informationer fra brugeren.</p>
-      <h5 class="card-footer text-center">Tilmeldte: 137 </h5>
-      <button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="color: white" routerLink="/begivenhed">Se Mere...</button>
-    </div>
-</section>
-<section class="card text-white bg-primary mb-3 rute" style="max-width: 30rem;">
-  <div class="card-header text-center">Begivenhed starter: Dato: 12/12/12 kl. 12:12</div>
-  <div class="card-body">
-    <h4 class="card-title text-center">Fra Odense til Læsø</h4>
-    <p class="card-text text-center">Beskrivelse af turen og muligvis nogle informationer fra brugeren.</p>
-    <h5 class="card-footer text-center">Tilmeldte: 137 </h5>
-    <button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="color: white" routerLink="/begivenhed">Se Mere...</button>
-  </div>
-</section>
 </section>

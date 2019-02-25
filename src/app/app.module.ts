@@ -20,7 +20,11 @@ import { AuthGuard } from './auth.guard';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+<<<<<<< HEAD
 import { OpretRuteComponent } from './opret-rute/opret-rute.component';
+=======
+import { BegivenhedService } from './begivenhed.service';
+>>>>>>> origin/DelevopmentBranch
 
 @NgModule({
   declarations: [
@@ -49,7 +53,7 @@ import { OpretRuteComponent } from './opret-rute/opret-rute.component';
     AgmDirectionModule,
     GooglePlaceModule
   ],
-  providers: [UsersService, AuthGuard],
+  providers: [BegivenhedService, UsersService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

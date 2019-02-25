@@ -24,6 +24,7 @@
     "agm-direction": "^0.7.6",
     "core-js": "^2.5.4",
     "geocode": "0.0.3",
+    "moment": "^2.24.0",
     "ngx-google-places-autocomplete": "^2.0.3",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",

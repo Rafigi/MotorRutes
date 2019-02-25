@@ -1,22 +1,38 @@
-<form>
+<form [formGroup]="OpretBegivnhed" (ngSubmit)=Opret()>
   <fieldset>
     <h4 class="col-md-7 m-2 text-right">Opret Begivenhed</h4>
     <section class="col-lg-3 mx-auto opret">
       <label class="col-sm-12 text-md-center">Vælg en Title og et tidspunkt for begivenheden</label>
-      <input type="text" class="form-control" placeholder="Skriv Titel">
+      <input type="text" class="form-control" formControlName="titel" placeholder="Skriv en Titel..." required>
+      <div *ngIf="Titel.invalid && (Titel.dirty || Titel.touched)" class="alert alert-danger">
+    <div *ngIf="Titel.errors.required">Du skal vælge en title!</div> 
+  </div>
       <section class="d-flex flex-row">
-        <input class="form-control col-5" type="time" value="00:00">
-        <input class="form-control col-7" type="date">
+        <input formControlName="tid" class="form-control col-5" type="time" value="00:00" required>
+        
+        <input formControlName="dato" placeholder="dd/mm/yyyy" class="form-control col-7" type="date" required>  
     </section>
-      
+    <div *ngIf="Tid.invalid && (Tid.dirty || Tid.touched)" class="alert alert-danger">
+        <div *ngIf="Tid.errors.required">Vælg et klokkeslæt</div> 
+      </div>
+      <div *ngIf="Dato.invalid && (Dato.dirty || Dato.touched)" class="alert alert-danger">
+          <div *ngIf="Dato.errors.required">Vælg en dato for begivenheden</div> 
+        </div>
     </section>
     <div class="form-group col-lg-7 mx-auto">
       <label for="exampleTextarea">Beskrivelse</label>
-      <textarea class="form-control" id="exampleTextarea" rows="6"></textarea>
+      <textarea class="form-control" formControlName="beskrivelse" rows="6" required></textarea>
     </div>
-    <section class="d-flex justify-content-around"> 
+    <div *ngIf="Beskrivelse.invalid && (Beskrivelse.dirty || Beskrivelse.touched)" class="alert alert-danger">
+        <div *ngIf="Beskrivelse.errors.required">Du skal skrive en beskrivelse</div> 
+      </div>
+      <div *ngIf="check">
+        <p>{{InfoMessage}}</p>
+      </div>
+    <section class="d-flex justify-content-around" *ngIf="!Profiloprettet">
       <button type="submit" class="btn alert-success" style="color: cornsilk">Opret Begivenhed</button>
     </section>
+    <button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="color: red; margin-top: 1em;" routerLink="/mine-begivenheder">Tilbage</button>
    
   </fieldset>
 </form>

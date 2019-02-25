@@ -1,12 +1,15 @@
-<div class="jumbotron">
-  <h1 class="display-3">Hyggetur</h1>
-  <p class="lead">Fra Vejle til Horsens<br>D. 12/12 - 2018 kl. 12:00</p>
+<div *ngFor="let begivenhed of begivenheder" class="jumbotron">
+  <h1 class="display-3">{{begivenhed.titel}}</h1>
+  <p class="lead">Fra {{begivenhed.startBy}} til {{begivenhed.slutBy}}<br>{{begivenhed.dato}} {{begivenhed.tid}}</p>
   <hr class="my-1">
-  <p>Beskrivelse: Se det smukke landskab</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Tilmeld</a>
+  <p>{{begivenhed.beskrivelse}}</p>
+  <p class="lead text-white" *ngIf="!checkTilmeldt">
+    <a class="btn btn-primary btn-lg" (click)="Tilmeld()" role="button">Tilmeld</a>
   </p>
-  <div class="card border-primary mb-2" style="max-width: 20rem; float:">
+  <p class="lead text-white" *ngIf="checkTilmeldt">
+    <a class="btn btn-danger btn-lg" (click)="Afmeld()" role="button">Frameld</a>
+  </p>
+  <div class="card border-primary mb-2" style="max-width: 20rem;">
     <div class="card-header">Antal: 24</div>
     <div class="card-body">
       <h4 class="card-title">Tilmeldte</h4>

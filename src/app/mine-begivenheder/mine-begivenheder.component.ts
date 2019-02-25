@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BegivenhedService } from '../begivenhed.service';
+import { Begivenheden } from '../begivenheden';
 
 @Component({
   selector: 'app-mine-begivenheder',
@@ -7,7 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MineBegivenhederComponent implements OnInit {
 
-  constructor() { }
+  begivenheder: object[] = [];
+  constructor(private service: BegivenhedService) 
+  {
+    let user: string;
+    user = localStorage.getItem('User');
+    service.GetMine(user).subscribe((data: any[]) => {
+      this.begivenheder = data;
+    });
+
+  }
 
   ngOnInit() {
   }
