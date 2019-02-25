@@ -20,7 +20,10 @@ export class BegivenhedService {
     this.messageSource.next(message)
   }
 
-
+  CountTilmeldte(id: string)
+  {
+    return this._http.get(this.ApiUrl + "count/" + id);
+  }
   TilmeldBegivenhed(object)
   {
     return this._http.post(this.ApiUrl + "tilmeld", object);

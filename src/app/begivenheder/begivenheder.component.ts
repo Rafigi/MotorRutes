@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BegivenhedService } from '../begivenhed.service';
 import { Begivenheden } from '../begivenheden';
+import { isNumber } from 'util';
 
 @Component({
   selector: 'app-begivenheder',
@@ -18,13 +19,17 @@ export class BegivenhederComponent implements OnInit {
     
   }
 
+  countTilmelding(count: string)
+  {
+    this.service.CountTilmeldte(count).subscribe((data: any)=> {
+     return data;
+    });
+  }
   message:string;
   Showthis(id: string)
   {
     this.service.changeMessage(id)    
   }
-  
-
   
   ngOnInit() {
     this.service.currentMessage.subscribe(message => this.message = message)
