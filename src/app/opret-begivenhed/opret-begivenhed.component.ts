@@ -16,7 +16,7 @@ export class OpretBegivenhedComponent implements OnInit {
 
   Profiloprettet: boolean = false;
   check: boolean = false; // Hvis true, viser den fejlbeskeden i HTML
-  InfoMessage: string = ''; //Info beskeden som skal vises til brugeren
+  InfoMessage: string = ''; // Info beskeden som skal vises til brugeren
 
   begivenhed: any; // Indholder begivenhedens info, som skal sendes videre til DB
 
