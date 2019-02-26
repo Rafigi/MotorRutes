@@ -19,18 +19,9 @@ import { UsersService } from './users.service';
 import { AuthGuard } from './auth.guard';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
-<<<<<<< HEAD
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { OpretRuteComponent } from './opret-rute/opret-rute.component';
 import { BegivenhedService } from './begivenhed.service';
-=======
-import { GooglePlaceModule } from "ngx-google-places-autocomplete";
-<<<<<<< HEAD
-import { OpretRuteComponent } from './opret-rute/opret-rute.component';
-=======
-import { BegivenhedService } from './begivenhed.service';
->>>>>>> origin/DelevopmentBranch
->>>>>>> c3618ee3351855291db6dff37391d589496e0350
 
 @NgModule({
   declarations: [
