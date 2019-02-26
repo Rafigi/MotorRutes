@@ -20,6 +20,12 @@
       Undgå told
     </label>
   </div>
+  <div *ngIf="check" class="text-success" >
+    {{infomessage}}
+  </div>
+  <div *ngIf="!check" class="text-danger">
+    {{infomessage}}
+  </div>
 <button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="margin-bottom: 1em; margin-top: 1em" (click)="getDirection()">SE RUTE</button>
 <label>Km: {{distance}} </label>
 <agm-map [latitude]="lat" [longitude]="lng" >

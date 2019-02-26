@@ -7,6 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RuteService } from '../rute.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as moment from 'moment';
+import { formControlBinding } from '@angular/forms/src/directives/ng_model';
 
 
 @Component({
@@ -15,6 +16,9 @@ import * as moment from 'moment';
   styleUrls: ['./opret-rute.component.css']
 })
 export class OpretRuteComponent implements OnInit {
+
+  check: boolean;
+  infomessage: string;
 
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private service: RuteService) {  }
 
@@ -27,6 +31,7 @@ public destination: any;
 public avoidHighways: boolean;
 public km: any;
 
+
 rute: any; // Indeholder al rute info, som skal videre til DB.
 
 
@@ -35,7 +40,9 @@ OpretRute = new FormGroup({
   adresse2: new FormControl('', Validators.required),
   motorvej: new FormControl(false, Validators.required),
   færge: new FormControl(false, Validators.required),
-  told: new FormControl(false, Validators.required)
+  told: new FormControl(false, Validators.required),
+  longitude: new FormControl(''),
+  langitude: new FormControl('') 
 });
 
 ngOnInit() {
@@ -44,6 +51,8 @@ ngOnInit() {
 
 Opret(): void {
     if (this.OpretRute.invalid) {
+      this.infomessage = "Skriv noget ordenligt";
+      this.check = true;
       return;
     } else {
       this.rute = { 
@@ -54,16 +63,22 @@ Opret(): void {
       Motorvej: this.OpretRute.get('motorvej').value,
       Færge: this.OpretRute.get('færge').value,
       Told: this.OpretRute.get('told').value,
-      Km: this.km
+      Km: this.km,
+      username: localStorage.getItem('User'),
+      longitude: this.lng,
+      langitude: this.lat
     };
       this.service.CreateRute(this.rute).subscribe((response: any) => {
-        alert('Rute ope');
+        this.infomessage = response['message']
+        this.check = true
     },
     (err: HttpErrorResponse) => {
       if(err.status == 400) {
-        alert(err.error['meesage']);
+        this.infomessage =  err.error['meesage'];
+        this.check = false;
       } else {
-        alert('Der er ingen forbindelse til serveren');
+         this.infomessage = 'Der er ingen forbindelse til serveren' + err.error['meesage'];
+         this.check = false;
       }
     });
   }
@@ -90,8 +105,11 @@ getDirection() {
         console.log(address.geometry.location.lat());
         console.log(address.geometry.location.toJSON());
         console.log(address.geometry.viewport.getNorthEast());
+        console.log(address.adr_address.toString());
         this.OpretRute.patchValue({
-          dest1: address.formatted_address
+          dest1: address.formatted_address,
+          langitude: address.geometry.location.lat,
+          longitude: address.geometry.location.lng
         });
         this.lng = address.geometry.location.lng();
         this.lat = address.geometry.location.lat();
