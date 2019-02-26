@@ -17,7 +17,7 @@ export class BegivenhedService {
   currentMessage = this.messageSource.asObservable();
 
   changeMessage(message: string) {
-    this.messageSource.next(message)
+    this.messageSource.next(message);
   }
 
   CountTilmeldte(id: string)

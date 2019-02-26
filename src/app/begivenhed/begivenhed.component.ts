@@ -8,7 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./begivenhed.component.css']
 })
 export class BegivenhedComponent implements OnInit {
-  
+
   checkTilmeldt: boolean;
   private message: string;
   TilFramelding: object;
@@ -18,18 +18,18 @@ export class BegivenhedComponent implements OnInit {
   constructor(private service: BegivenhedService) {  }
 
   ngOnInit() {
-    this.service.currentMessage.subscribe(message => this.message = message)
+    this.service.currentMessage.subscribe(message => this.message = message);
     this.service.ShowBegivenhed(this.message).subscribe((res: object)=>{
-      this.begivenheder = res    
+      this.begivenheder = res;
     });
-   this.countTilmelding(this.message);
+    this.countTilmelding(this.message);
 
     this.CheckTilmelding();
   }
 
   countTilmelding(count: string)
   {
-    this.service.CountTilmeldte(count).subscribe((data: any)=> {
+    this.service.CountTilmeldte(count).subscribe((data: any) => {
       this.countTilmeldt = data;
     });
   }
@@ -41,7 +41,6 @@ export class BegivenhedComponent implements OnInit {
     this.checkTilmeldt = true;
     this.countTilmelding(this.message);
     });
-    
   }
 
   Afmeld()
@@ -56,7 +55,7 @@ export class BegivenhedComponent implements OnInit {
   CheckTilmelding()
   {
     this.service.CheckTilmelding(localStorage.getItem('User'), this.message).subscribe((data: boolean) => {
-      this.checkTilmeldt = data
+      this.checkTilmeldt = data;
     });
 
   }

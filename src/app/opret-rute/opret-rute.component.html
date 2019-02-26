@@ -1,19 +1,31 @@
-<div id="felt">
-<input ngx-google-places-autocomplete class="form-control text-center" placeholder="Indtast start lokation" (onAddressChange)="handleAddressChange($event)" />
-<input ngx-google-places-autocomplete class="form-control text-center" placeholder="Indtast slut lokation" (onAddressChange)="handleAddressChange2($event)" />
+<form id="felt" [formGroup]="OpretRute" (ngSubmit)=Opret()>
+<input ngx-google-places-autocomplete formControlName="adresse1" class="form-control text-center" placeholder="Indtast start lokation" (onAddressChange)="handleAddressChange($event)" />
+<input ngx-google-places-autocomplete formControlName="adresse2" class="form-control text-center" placeholder="Indtast slut lokation" (onAddressChange)="handleAddressChange2($event)" />
 <fieldset class="form-group">
   <div class="form-check">
     <label class="form-check-label" style="margin-top: 1em">
-      <input class="form-check-input" type="checkbox" value="" checked="" [(ngModel)]="check" data-md-icheck>
+      <input formControlName="motorvej" class="form-check-input" type="checkbox" [value]="false" checked=""  data-md-icheck>
       Undgå motorvej
     </label>
   </div>
+  <div class="form-check">
+    <label class="form-check-label" style="margin-top: 1em">
+      <input formControlName="færge" class="form-check-input" type="checkbox" [value]="false" checked="" data-md-icheck>
+      Undgå færge
+    </label>
+  </div>
+  <div class="form-check">
+    <label class="form-check-label" style="margin-top: 1em">
+      <input formControlName="told" class="form-check-input" type="checkbox" [value]="false" checked="" data-md-icheck>
+      Undgå told
+    </label>
+  </div>
 <button type="button" class="btn btn-outline-primary btn-lg col-sm-12" style="margin-bottom: 1em; margin-top: 1em" (click)="getDirection()">SE RUTE</button>
-<label [(ngModel)]="distance">Km: </label>
+<label>Km: {{distance}} </label>
 <agm-map [latitude]="lat" [longitude]="lng" >
-  <agm-direction [origin]="origin" [destination]="destination" [avoidHighways]="avoidHighways">
+  <agm-direction [origin]="origin" [destination]="destination" [avoidHighways]="avoidHighways" >
   </agm-direction>
 </agm-map>
-<button type="button" class="btn btn-outline-success btn-lg col-sm-12" style="margin-top: 1em">Opret Rute</button>
+<button type="submit" class="btn btn-outline-success btn-lg col-sm-12" style="margin-top: 1em">Opret Rute</button>
 </fieldset>
-</div>
+</form>
