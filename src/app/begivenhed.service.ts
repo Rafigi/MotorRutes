@@ -16,6 +16,13 @@ export class BegivenhedService {
   private messageSource = new BehaviorSubject('default message');
   currentMessage = this.messageSource.asObservable();
 
+
+
+  GetTilmeldteUsername(id: string)
+  {
+    return this._http.get(this.ApiUrl + "UserTilmeldte/" + id);
+  }
+
   changeMessage(message: string) {
     this.messageSource.next(message);
   }

@@ -13,10 +13,8 @@
     <div class="card-header">Antal: {{countTilmeldt}}</div>
     <div class="card-body">
       <h4 class="card-title">Tilmeldte</h4>
-      <p class="card-text">
-        - Bo <br>
-        - Børge <br>
-        - Hans 
+      <p *ngFor="let tilmeldte of users" class="card-text">
+        - {{tilmeldte.username}} <br>
       </p>
     </div>
   </div>

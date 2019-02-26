@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BegivenhedService } from '../begivenhed.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ObjectUnsubscribedError } from 'rxjs';
 
 @Component({
   selector: 'app-begivenhed',
@@ -13,6 +14,7 @@ export class BegivenhedComponent implements OnInit {
   private message: string;
   TilFramelding: object;
   countTilmeldt: number;
+  users:object;
 
   begivenheder: object;
   constructor(private service: BegivenhedService) {  }
@@ -25,6 +27,7 @@ export class BegivenhedComponent implements OnInit {
     this.countTilmelding(this.message);
 
     this.CheckTilmelding();
+    this.ShowTilmeldte();
   }
 
   countTilmelding(count: string)
@@ -40,6 +43,7 @@ export class BegivenhedComponent implements OnInit {
     this.service.TilmeldBegivenhed(this.TilFramelding).subscribe((data: any ) => {
     this.checkTilmeldt = true;
     this.countTilmelding(this.message);
+    this.ShowTilmeldte()
     });
   }
 
@@ -49,6 +53,7 @@ export class BegivenhedComponent implements OnInit {
     this.service.AfmeldBegivenhed(this.TilFramelding).subscribe((data: any) => {
       this.checkTilmeldt = false;
       this.countTilmelding(this.message);
+      this.ShowTilmeldte();
       });
   }
 
@@ -58,5 +63,12 @@ export class BegivenhedComponent implements OnInit {
       this.checkTilmeldt = data;
     });
 
+  }
+
+  ShowTilmeldte()
+  {
+    this.service.GetTilmeldteUsername(this.message).subscribe((username: any[]) => {
+      this.users = username;
+    })
   }
 }
