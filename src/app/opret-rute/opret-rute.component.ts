@@ -109,16 +109,7 @@ getDirection() {
         console.log(address.geometry.location.lat());
         console.log(address.geometry.location.toJSON());
         console.log(address.geometry.viewport.getNorthEast());
-<<<<<<< HEAD
-        console.log(address.adr_address.toString());
-        this.OpretRute.patchValue({
-          dest1: address.formatted_address,
-          langitude: address.geometry.location.lat,
-          longitude: address.geometry.location.lng
-        });
-=======
         this.FuldStartAddresse = address.formatted_address;
->>>>>>> origin/Mo
         this.lng = address.geometry.location.lng();
         this.lat = address.geometry.location.lat();
     }
