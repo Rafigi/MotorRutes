@@ -26,13 +26,15 @@ public origin: any;
 public destination: any;
 public avoidHighways: boolean;
 public km: any;
+FuldStartAddresse: any;
+FuldSlutAddresse: any;
 
 rute: any; // Indeholder al rute info, som skal videre til DB.
 
 
 OpretRute = new FormGroup({
-  adresse1: new FormControl('', Validators.required),
-  adresse2: new FormControl('', Validators.required),
+  // adresse1: new FormControl('', Validators.required),
+  // adresse2: new FormControl('', Validators.required),
   motorvej: new FormControl(false, Validators.required),
   færge: new FormControl(false, Validators.required),
   told: new FormControl(false, Validators.required)
@@ -47,10 +49,10 @@ Opret(): void {
       return;
     } else {
       this.rute = { 
-      Origin: this.origin, 
+      Origin: this.origin,
       Destination: this.destination,
-      FuldStartAdresse: this.OpretRute.get('adresse1').value,
-      FuldSlutAdresse: this.OpretRute.get('adresse2').value,
+      FuldStartAdresse: this.FuldStartAddresse,
+      FuldSlutAdresse: this.FuldSlutAddresse,
       Motorvej: this.OpretRute.get('motorvej').value,
       Færge: this.OpretRute.get('færge').value,
       Told: this.OpretRute.get('told').value,
@@ -82,6 +84,8 @@ getDirection() {
   } else {
     this.avoidHighways = false;
   }
+  console.log(this.FuldSlutAddresse);
+  console.log(this.FuldStartAddresse);
 }
 
 
@@ -90,9 +94,7 @@ getDirection() {
         console.log(address.geometry.location.lat());
         console.log(address.geometry.location.toJSON());
         console.log(address.geometry.viewport.getNorthEast());
-        this.OpretRute.patchValue({
-          dest1: address.formatted_address
-        });
+        this.FuldStartAddresse = address.formatted_address;
         this.lng = address.geometry.location.lng();
         this.lat = address.geometry.location.lat();
     }
@@ -101,9 +103,7 @@ getDirection() {
       console.log(address.geometry.location.lat());
       console.log(address.geometry.location.toJSON());
       console.log(address.geometry.viewport.getNorthEast());
-      this.OpretRute.patchValue({
-        dest2: address.formatted_address
-      });
+      this.FuldSlutAddresse = address.formatted_address;
       this.lng2 = address.geometry.location.lng();
       this.lat2  = address.geometry.location.lat();
   }
