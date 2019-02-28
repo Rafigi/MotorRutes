@@ -25,7 +25,6 @@ export class TilmeldteBegivenhederComponent implements OnInit {
     this.service.GetMineTilmeldte(user).subscribe((data: any[]) => {
       this.begivenheder = data;
       console.log(this.begivenheder);
-      
     });
   }
 }
