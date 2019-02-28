@@ -3,19 +3,23 @@
   <thead>
     <tr>
       <th scope="col">Status</th>
+      <th scope="col">Titel</th>
       <th scope="col">Dato</th>
-      <th scope="col">By</th>
+      <th scope="col">Start By</th>
+      <th scope="col">Slut By</th>
       <th scope="col">Tilmeldte</th>
       <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-    <tr class="table-success rows" routerLink="/begivenhed">
-      <th scope="row">Tilmeldt</th>
-      <td>D. 13/02 - 2018 Kl. 13:00</td>
-      <td>Vejle</td>
-      <td>42</td>
-      <td><button type="button" class="btn btn-danger">Afmeld</button></td>
+    <tr *ngFor="let begivenhed of begivenheder" class="table-primary rows " routerLink="/begivenhed">
+      <th class="text-white" scope="row">Tilmeldte</th>
+      <td class="text-white text-middle"> Titel: {{begivenhed.titel}}</td>
+      <td class="text-white"> {{begivenhed.dato}} <br> Klokken: {{begivenhed.tid}}</td>
+      <td class="text-white">{{begivenhed.startBy}}</td>
+      <td class="text-white">{{begivenhed.slutBy}}</td>
+      <td class="text-white">102</td>
+      <td><button type="button" class="btn btn-success">Ret</button></td>
     </tr>
     <tr class="table-danger rows" routerLink="/begivenhed">
       <th scope="row">Aflyst</th>
