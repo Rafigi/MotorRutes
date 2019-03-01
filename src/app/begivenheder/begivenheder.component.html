@@ -5,7 +5,7 @@
     </section>
 
 <section class="d-flex col-12 justify-content-start flex-wrap">
-  <section *ngFor="let begivenhed of begivenheder" class="card text-white bg-primary mb-3 rute " style="max-width: 30rem;">
+  <section *ngFor="let begivenhed of begivenheder" class="card text-white bg-primary mb-3 rute col-3" style="max-width: 30rem;">
       <div class="card-header float-left"> Title: <p class="float-right text-warning"> Dato: {{begivenhed.dato}} <br> Tidpunkt: {{begivenhed.tid}} </p> <br> {{begivenhed.titel}}</div>
       <div class="card-body">
         <h4 class="card-title text-center">Fra {{begivenhed.startBy}} til {{begivenhed.slutBy}}</h4>

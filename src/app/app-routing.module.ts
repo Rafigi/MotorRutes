@@ -10,12 +10,13 @@ import { MineBegivenhederComponent } from './mine-begivenheder/mine-begivenheder
 import { TilmeldteBegivenhederComponent } from './tilmeldte-begivenheder/tilmeldte-begivenheder.component';
 import { AuthGuard } from './auth.guard';
 import { OpretRuteComponent } from './opret-rute/opret-rute.component';
+import { CanActivate } from '@angular/router/src/utils/preactivation';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'begivenheder', component: BegivenhederComponent, canActivate: [AuthGuard]},
-  {path: 'opret-profil', component: OpretProfilComponent},
+  {path: 'opret-profil', component: OpretProfilComponent, canActivate: [AuthGuard]},
   {path: 'begivenhed', component: BegivenhedComponent, canActivate: [AuthGuard]},
   {path: 'opret-begivenhed', component: OpretBegivenhedComponent, canActivate: [AuthGuard]},
   {path: 'om-os', component: OmOsComponent},
