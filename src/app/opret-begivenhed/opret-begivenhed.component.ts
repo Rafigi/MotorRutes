@@ -40,7 +40,7 @@ export class OpretBegivenhedComponent implements OnInit {
     else
     {
       this.check = false; 
-      this.begivenhed = { Titel: this.OpretBegivnhed.get('titel').value, Beskrivelse: this.OpretBegivnhed.get('beskrivelse').value, Dato: moment(this.OpretBegivnhed.get('dato').value).format('L'), Tid: this.OpretBegivnhed.get('tid').value, FK_UID: 1, FK_RID: 8 };
+      this.begivenhed = { Titel: this.OpretBegivnhed.get('titel').value, Beskrivelse: this.OpretBegivnhed.get('beskrivelse').value, Dato: moment(this.OpretBegivnhed.get('dato').value).format('L'), Tid: this.OpretBegivnhed.get('tid').value, Status: 'Aktiv', FK_UID: 1, FK_RID: 8 };
       this.service.CreateBegivenhed(this.begivenhed).subscribe((response: any) => {
       this.InfoMessage = response['message'];
       this.check = true;

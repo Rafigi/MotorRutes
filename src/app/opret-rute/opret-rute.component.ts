@@ -42,9 +42,7 @@ OpretRute = new FormGroup({
   // adresse2: new FormControl('', Validators.required),
   motorvej: new FormControl(false, Validators.required),
   færge: new FormControl(false, Validators.required),
-  told: new FormControl(false, Validators.required),
-  longitude: new FormControl(''),
-  langitude: new FormControl('') 
+  told: new FormControl(false, Validators.required)
 });
 
 ngOnInit() {
@@ -58,8 +56,8 @@ Opret(): void {
       return;
     } else {
       this.rute = { 
-      Origin: this.origin,
-      Destination: this.destination,
+      Origin: this.lat + ', ' + this.lng,
+      Destination: this.lat2 + ', ' + this.lng2,
       FuldStartAdresse: this.FuldStartAddresse,
       FuldSlutAdresse: this.FuldSlutAddresse,
       Motorvej: this.OpretRute.get('motorvej').value,
@@ -67,8 +65,6 @@ Opret(): void {
       Told: this.OpretRute.get('told').value,
       Km: this.km,
       username: localStorage.getItem('User'),
-      longitude: this.lng,
-      langitude: this.lat
     };
       this.service.CreateRute(this.rute).subscribe((response: any) => {
         this.infomessage = response['message']
