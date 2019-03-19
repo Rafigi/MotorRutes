@@ -44,7 +44,7 @@ import { BegivenhedService } from './begivenhed.service';
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBM4dBYGewehvlFZyudquC5fQnPmxoblhc',
+      apiKey: 'Key',
       libraries: ['places', 'geometry']
     }),
     AgmDirectionModule,
